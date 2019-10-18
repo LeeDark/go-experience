@@ -14,3 +14,9 @@
 # IntelliJ IDEA
 .idea/
 *.iml
+
+# VisualStudio Code
+.vscode/
+
+# Apps
+chat
