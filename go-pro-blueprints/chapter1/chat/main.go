@@ -9,6 +9,7 @@ import (
 	"sync"
 )
 
+
 // templ representes a single template
 type templateHandler struct {
 	once     sync.Once
@@ -30,6 +31,7 @@ func main() {
 	flag.Parse()
 
 	r := newRoom()
+	//r.tracer = trace.New(os.Stdout)
 
 	// root
 	http.Handle("/", &templateHandler{filename:"chat.html"})
