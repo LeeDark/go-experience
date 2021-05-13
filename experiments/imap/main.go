@@ -27,7 +27,7 @@ func main() {
 	defer c.Logout()
 
 	// Login
-	if err := c.Login("sergey@horisen.com", "SFuar4cxD7Di"); err != nil {
+	if err := c.Login("sergey@horisen.com", "************"); err != nil {
 		log.Fatal(err)
 	}
 	log.Println("Logged in")
