@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/LeeDark/go-experience/experiments/maybe"
+	"github.com/LeeDark/go-experience/experiments/mongodb/maybe"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
