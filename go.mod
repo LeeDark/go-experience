@@ -12,6 +12,7 @@ require (
 	github.com/fatih/structs v1.1.0 // indirect
 	github.com/flosch/pongo2 v0.0.0-20200913210552-0d938eb266f3 // indirect
 	github.com/gavv/monotime v0.0.0-20190418164738-30dba4353424 // indirect
+	github.com/go-co-op/gocron v1.6.2
 	github.com/google/go-querystring v1.0.0 // indirect
 	github.com/gorilla/schema v1.2.0 // indirect
 	github.com/gorilla/websocket v1.4.2
@@ -29,6 +30,7 @@ require (
 	github.com/mrjones/oauth v0.0.0-20190623134757-126b35219450
 	github.com/onsi/ginkgo v1.14.2 // indirect
 	github.com/onsi/gomega v1.10.4 // indirect
+	github.com/robfig/cron/v3 v3.0.1
 	github.com/ryanuber/columnize v2.1.2+incompatible // indirect
 	github.com/sergi/go-diff v1.1.0 // indirect
 	github.com/shurcooL/sanitized_anchor_name v1.0.0 // indirect
