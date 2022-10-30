@@ -1,6 +1,6 @@
 module github.com/LeeDark/go-experience
 
-go 1.17
+go 1.19
 
 require (
 	github.com/Joker/jade v1.0.0 // indirect
