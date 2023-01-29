@@ -1,4 +1,4 @@
-package visitor
+package main
 
 type ProductInfoRetriever interface {
 	GetPrice() float32

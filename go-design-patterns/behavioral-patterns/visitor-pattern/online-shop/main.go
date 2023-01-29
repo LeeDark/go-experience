@@ -2,12 +2,10 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/LeeDark/go-experience/go-design-patterns/behavioral-patterns/visitor-pattern/online-shop/visitor"
 )
 
 func main() {
-	products := make([]visitor.Visitable, 2)
+	products := make([]Visitable, 3)
 	products[0] = &Rice{
 		Product: Product{
 			Price: 32.0,
@@ -18,6 +16,12 @@ func main() {
 		Product: Product{
 			Price: 40.0,
 			Name:  "Some pasta",
+		},
+	}
+	products[2] = &Fridge{
+		Product: Product{
+			Price: 50.0,
+			Name:  "A fridge",
 		},
 	}
 

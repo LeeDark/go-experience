@@ -1,7 +1,5 @@
 package main
 
-import "github.com/LeeDark/go-experience/go-design-patterns/behavioral-patterns/visitor-pattern/online-shop/visitor"
-
 type Product struct {
 	Price float32
 	Name  string
@@ -15,6 +13,6 @@ func (p *Product) GetName() string {
 	return p.Name
 }
 
-func (p *Product) Accept(v visitor.Visitor) {
+func (p *Product) Accept(v Visitor) {
 	v.Visit(p)
 }
