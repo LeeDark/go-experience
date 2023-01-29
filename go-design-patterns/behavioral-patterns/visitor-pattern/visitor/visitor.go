@@ -1,6 +1,10 @@
 package visitor
 
-import "io"
+import (
+	"fmt"
+	"io"
+	"os"
+)
 
 type MessageA struct {
 	Msg    string
@@ -8,11 +12,15 @@ type MessageA struct {
 }
 
 func (m *MessageA) Accept(v Visitor) {
-	//Do nothing
+	v.VisitA(m)
 }
 
 func (m *MessageA) Print() {
-	//Do nothing
+	if m.Output == nil {
+		m.Output = os.Stdout
+	}
+
+	fmt.Fprintf(m.Output, "A: %s", m.Msg)
 }
 
 type MessageB struct {
@@ -21,11 +29,15 @@ type MessageB struct {
 }
 
 func (m *MessageB) Accept(v Visitor) {
-	//Do nothing
+	v.VisitB(m)
 }
 
 func (m *MessageB) Print() {
-	//Do nothing
+	if m.Output == nil {
+		m.Output = os.Stdout
+	}
+
+	fmt.Fprintf(m.Output, "B: %s", m.Msg)
 }
 
 type Visitor interface {
@@ -40,9 +52,9 @@ type Visitable interface {
 type MessageVisitor struct{}
 
 func (mf *MessageVisitor) VisitA(m *MessageA) {
-	//Do nothing
+	m.Msg = fmt.Sprintf("%s %s", m.Msg, "(Visited A)")
 }
 
 func (mf *MessageVisitor) VisitB(m *MessageB) {
-	//Do nothing
+	m.Msg = fmt.Sprintf("%s %s", m.Msg, "(Visited B)")
 }
