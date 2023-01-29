@@ -20,7 +20,7 @@ func (m *MessageA) Print() {
 		m.Output = os.Stdout
 	}
 
-	fmt.Fprintf(m.Output, "A: %s", m.Msg)
+	fmt.Fprintf(m.Output, "A: %s\n", m.Msg)
 }
 
 type MessageB struct {
@@ -37,7 +37,7 @@ func (m *MessageB) Print() {
 		m.Output = os.Stdout
 	}
 
-	fmt.Fprintf(m.Output, "B: %s", m.Msg)
+	fmt.Fprintf(m.Output, "B: %s\n", m.Msg)
 }
 
 type Visitor interface {
@@ -57,4 +57,14 @@ func (mf *MessageVisitor) VisitA(m *MessageA) {
 
 func (mf *MessageVisitor) VisitB(m *MessageB) {
 	m.Msg = fmt.Sprintf("%s %s", m.Msg, "(Visited B)")
+}
+
+type MsgFieldVisitorPrinter struct{}
+
+func (mf *MsgFieldVisitorPrinter) VisitA(m *MessageA) {
+	fmt.Println(m.Msg)
+}
+
+func (mf *MsgFieldVisitorPrinter) VisitB(m *MessageB) {
+	fmt.Println(m.Msg)
 }
