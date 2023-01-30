@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/LeeDark/go-experience/go-design-patterns/behavioral-patterns/visitor/visitor"
+	"github.com/LeeDark/go-experience/go-design-patterns/behavioral/visitor/visitor"
 )
 
 func main() {
