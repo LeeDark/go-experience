@@ -15,6 +15,8 @@ func Sum(a, b interface{}) interface{} {
 			return &Two{}
 		case Two:
 			return &Three{}
+		case int:
+			return b.(int) + 1
 		default:
 			return fmt.Errorf("Number not found")
 		}
@@ -46,4 +48,5 @@ func Sum(a, b interface{}) interface{} {
 func main() {
 	fmt.Printf("%#v\n", Sum(One{}, Two{}))
 	fmt.Printf("%d\n", Sum(1, 2))
+	fmt.Printf("%#v\n", Sum(One{}, 2))
 }
