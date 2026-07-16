@@ -16,8 +16,7 @@ func main() {
 func logHandler(w http.ResponseWriter, r *http.Request) {
 	ch := make(chan int)
 	go func() {
-		obj := make(map[string]float64)
-		if err := json.NewDecoder(r.Body).Decode(&obj); err != nil {
+		if err := json.NewDecoder(r.Body).Decode(new(make(map[string]float64))); err != nil {
 			ch <- http.StatusBadRequest
 			return
 		}
