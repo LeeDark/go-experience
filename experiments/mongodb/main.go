@@ -7,16 +7,15 @@ import (
 
 	"github.com/LeeDark/go-experience/experiments/mongodb/maybe"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 const localhostURI = "mongodb://127.0.0.1:27017"
 
 type MNPCacheItem struct {
-	ID         primitive.ObjectID `bson:"_id,omitempty"`
+	ID         bson.ObjectID `bson:"_id,omitempty"`
 	InstanceID int64              `bson:"instid"`
 	MSISDN     string             `bson:"msisdn"`
 	CountryID  maybe.Int64        `bson:"countryid"`
@@ -31,7 +30,7 @@ type MNPCacheItem struct {
 }
 
 type IndiaCacheItem struct {
-	ID            primitive.ObjectID `bson:"_id,omitempty"`
+	ID            bson.ObjectID `bson:"_id,omitempty"`
 	MSISDN        string             `bson:"msisdn"`
 	OriginalMcc   string             `bson:"originalMcc"`
 	OriginalMnc   string             `bson:"originalMnc"`
@@ -59,7 +58,7 @@ func GetItem(collection *mongo.Collection, MSISDN string) {
 
 func AddIndiaItem(collection *mongo.Collection, MSISDN, MCC, MNC string) {
 	var cacheItem IndiaCacheItem
-	filter := bson.D{primitive.E{Key: "msisdn", Value: MSISDN}}
+	filter := bson.D{bson.E{Key: "msisdn", Value: MSISDN}}
 
 	err := collection.FindOne(context.TODO(), filter).Decode(&cacheItem)
 	if err != nil {
@@ -113,20 +112,19 @@ func GetIndiaItem(collection *mongo.Collection, MSISDN string) {
 }
 
 func main() {
-	client, err := mongo.NewClient(options.Client().ApplyURI(localhostURI))
+	client, err := mongo.Connect(options.Client().ApplyURI(localhostURI))
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
 	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
-	err = client.Connect(ctx)
-	if err != nil {
+	defer client.Disconnect(ctx)
+
+	if err := client.Ping(ctx, nil); err != nil {
 		fmt.Println(err)
 		return
 	}
-
-	defer client.Disconnect(ctx)
 
 	cacheCollection := client.Database("mnpserver2").Collection("cache")
 
